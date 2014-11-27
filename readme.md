@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/sindris12/tictactoe.png?label=ready&title=Ready)](https://waffle.io/sindris12/tictactoe)
 Project Template for TicTacToe
 =========
 
