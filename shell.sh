@@ -1,5 +1,6 @@
 #!/bin/bash
 
+ln -s /usr/bin/nodejs /usr/bin/node
 echo Cleaning...
 rm -rf ./dist
 echo "Installing grunt"
