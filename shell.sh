@@ -1,13 +1,15 @@
 #!/bin/bash
 
-echo NPM INSTALL GRUNT
+echo Cleaning...
+rm -rf ./dist
+echo "Installing grunt"
 npm install grunt
-npm install grunt-cli
-echo NPM INSTALL BOWER
+echo "Installing bower"
 npm install bower
-echo NPM INSTALL
+echo "Npm install"
 npm install
-echo BOWER INSTALL
+echo "Bower install"
 bower install
-echo GRUNT
+echo "Running grunt"
 grunt
+echo "Done"
