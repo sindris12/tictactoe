@@ -14,4 +14,7 @@ npm install --production
 echo Building docker image
 docker build -t sindris12/tictactoe .
 
+echo Pusing to Docker
+docker push sindris12/tictactoe
+
 echo "Done"
