@@ -2,6 +2,7 @@
 
 echo NPM INSTALL GRUNT
 npm install grunt
+npm install grunt-cli
 echo NPM INSTALL BOWER
 npm install bower
 echo NPM INSTALL
