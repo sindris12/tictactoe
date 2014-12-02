@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -e
 export PATH=$PATH:/usr/local/bin
 ln -s /usr/bin/nodejs /usr/bin/node
 echo Cleaning...
