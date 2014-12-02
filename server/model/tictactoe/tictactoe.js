@@ -9,6 +9,7 @@ module.exports = function(history) {
 
   return {
     execudeCommand: function (command) {
+      console.log(command);
       var commandHandler = {
         "CreateGame": function (command) {
           return [{
@@ -19,7 +20,7 @@ module.exports = function(history) {
           }]
         },
         "JoinGame": function (command) {
-          if (gameState.gameFull()) {
+          if (gameState.fullGame()) {
             console.log("Sorry the game is full!");
             return [{
               event: "FullGameJoinAttempted",
@@ -29,7 +30,6 @@ module.exports = function(history) {
             }];
           }
           console.log("Game joined");
-          gameFull = true;
           return [{
             event: "GameJoined",
             user: command.user,
@@ -38,6 +38,7 @@ module.exports = function(history) {
           }];
         }
       }
+
       return commandHandler[command.command](command);
     }
   }
