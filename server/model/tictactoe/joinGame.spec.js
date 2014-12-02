@@ -46,4 +46,48 @@ describe('Joining a game', function() {
 
   });
 
+  it('should try to join a full game', function() {
+
+    var given = [
+      {
+        event: "GameCreated",
+        user: {
+          userName: "Sindri"
+        },
+        name: "EliteTicTacToe",
+        timeStamp: "2014-12-02T11:29:29"
+      },
+      {
+        event: "JoinGame",
+        user: {
+          userName: "Arni"
+        },
+        name: "EliteTicTacToe",
+        timeStamp: "2014-12-02T11:29:59"
+      }
+    ];
+
+    var when = {
+      command: "JoinGame",
+      user: {
+        userName: "Doddi"
+      },
+      name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:07"
+    };
+
+    var then = [{
+      event: "FullGameJoinAttempted",
+      user: {
+        userName: "Doddi"
+      },
+      name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:07"
+    }];
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+
+  });
 });

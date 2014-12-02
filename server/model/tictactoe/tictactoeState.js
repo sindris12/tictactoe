@@ -8,7 +8,7 @@ module.exports = function(history){
   var fullGame = false;
 
   _.each(history, function(event){
-    if(event.event === "GameJoined"){
+    if(event.event === "JoinGame"){
       fullGame = true;
     }
   });

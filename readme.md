@@ -143,6 +143,8 @@ More stories for consideratino
 * A user creates a game instance. 
 * A different user joins the created game instance.
 * Another user tries to join a full game instance.
+* A user tries to create a game instance with no username.
+* A user tries to create a game with no game name.
 * One of the users makes a move.
 * A game instance ends in a draw.
 * A game instance ends with one player winning.

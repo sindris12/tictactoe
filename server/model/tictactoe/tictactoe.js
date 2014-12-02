@@ -12,6 +12,22 @@ module.exports = function(history) {
       console.log(command);
       var commandHandler = {
         "CreateGame": function (command) {
+          if(!command.name) {
+            return [{
+              event: "NoGameName",
+              user: command.user,
+              name: command.name,
+              timeStamp: command.timeStamp
+            }];
+          }
+          if(!command.user.userName) {
+            return [{
+              event: "NoUserName",
+              user: command.user,
+              name: command.name,
+              timeStamp: command.timeStamp
+            }];
+          }
           return [{
             event: "GameCreated",
             user: command.user,

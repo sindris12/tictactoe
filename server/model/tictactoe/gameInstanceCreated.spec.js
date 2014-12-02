@@ -35,5 +35,60 @@ describe('Create Game', function() {
 
     should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
   })
+
+  it('should create a game instance without a game name and get a error event', function() {
+
+    var given = [];
+
+    var when = {
+      command: "CreateGame",
+      user: {
+        userName: "Sindri"
+      },
+      name: "",
+      timeStamp: "2014-12-02T11:29:29"
+    };
+
+    var then = [{
+      event: "NoGameName",
+      user: {
+        userName: "Sindri"
+      },
+      name: "",
+      timeStamp: "2014-12-02T11:29:29"
+    }];
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+  });
+
+  it('should create a game instance without a userName and get a error event', function() {
+
+    var given = [];
+
+    var when = {
+      command: "CreateGame",
+      user: {
+        userName: ""
+      },
+      name: "Elite",
+      timeStamp: "2014-12-02T11:29:29"
+    };
+
+    var then = [{
+      event: "NoUserName",
+      user: {
+        userName: ""
+      },
+      name: "Elite",
+      timeStamp: "2014-12-02T11:29:29"
+    }];
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+
+  });
 });
 
