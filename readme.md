@@ -137,3 +137,13 @@ More stories for consideratino
   
 * Can provision a new environment in cloud (Digital Ocean) with minimal input.
   Script server provisioning.
+
+### Events
+
+* A user creates a game instance. 
+* A different user joins the created game instance.
+* Another user tries to join a full game instance.
+* One of the users makes a move.
+* A game instance ends in a draw.
+* A game instance ends with one player winning.
+* A game instance ends with a player leaving the game.
