@@ -1,6 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/sindris12/tictactoe.png?label=ready&title=Ready)](https://waffle.io/sindris12/tictactoe)
 [![Build Status](https://travis-ci.org/sindris12/tictactoe.svg?branch=master)](https://travis-ci.org/sindris12/tictactoe)
+[ ![Codeship Status for sindris12/tictactoe](https://codeship.com/projects/0a676790-5951-0132-0c75-6e3b1978079c/status?branch=master)](https://codeship.com/projects/50241)
 Project Template for TicTacToe
+
 =========
 
 Getting started with this project template. After this you should have the project up-and-running on a Digital Ocean
