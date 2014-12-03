@@ -58,13 +58,8 @@ module.exports = function(history) {
           if(gameState.fullGame()) {
             //2 users are in the game and the game can start.
 
-            console.log(command);
-            console.log("typeAT", gameState.typeAt(command.move.coordinates[0], command.move.coordinates[1]));
-
             var check = gameState.typeAt(command.move.coordinates[0], command.move.coordinates[1]);
-
             if(check) {
-              console.log("RIGHT PLACE");
               return [{
                 event: "IllegalMove",
                 user: command.user,
@@ -75,16 +70,57 @@ module.exports = function(history) {
             }
             //still to add a check if the move is valid and if this is actually this players turn to make a move.
 
+            if(command.move.coordinates[0] > 2 || command.move.coordinates[1] > 2) {
+              return [{
+                event: "IllegalMove",
+                user: command.user,
+                name: command.name,
+                timeStamp: command.timeStamp,
+                move: command.move
+              }];
+            }
 
+            var result = gameState.makeMove(command.move);
 
-            gameState.makeMove(command.move);
-            return [{
-              event: "MoveMade",
-              user: command.user,
-              name: command.name,
-              timeStamp: command.timeStamp,
-              move: command.move
-            }];
+            if(command.move.type === gameState.lastToPlay()) {
+              return [{
+                event: "NotYourTurn",
+                user: command.user,
+                name: command.name,
+                timeStamp: command.timeStamp,
+                move: command.move
+              }];
+            }
+
+            if(result === "WIN") {
+              return [{
+                event: "GameWon",
+                user: command.user,
+                name: command.name,
+                timeStamp: command.timeStamp,
+                move: command.move
+              }];
+            }
+
+            if(result === "DRAW") {
+              return [{
+                event: "GameDrawn",
+                user: command.user,
+                name: command.name,
+                timeStamp: command.timeStamp,
+                move: command.move
+              }];
+            }
+
+            if(result === false) {
+              return [{
+                event: "MoveMade",
+                user: command.user,
+                name: command.name,
+                timeStamp: command.timeStamp,
+                move: command.move
+              }];
+            }
           }
         }
       }

@@ -25,6 +25,21 @@ var generateMove = function(x,y,t,u) {
   };
 };
 
+var moveEvent = function(x,y,t,u) {
+  return {
+    event: "MoveMade",
+      user: {
+    userName: u
+  },
+    name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:55",
+    move: {
+    coordinates: [x,y],
+      type: t
+  }
+  }
+}
+
 var createGame = function() {
   return {
     event: "GameCreated",
@@ -114,6 +129,38 @@ describe('Playing a game', function() {
     var actualEvent = tictactoe(given).execudeCommand(when);
 
     should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+  });
+
+  it('should play a simple game that ends with a win', function() {
+
+    var given = [
+      createGame(),
+      joinGame(),
+      moveEvent(0,0,"X", "Sindri"),
+      moveEvent(0,1,"O", "Arni"),
+      moveEvent(1,0,"X", "Sindri"),
+      moveEvent(1,1,"O", "Arni"),
+    ];
+
+    when = generateMove(2,0, "X", "Sindri");
+    //GameWon
+    var then = [{
+      event: "GameWon",
+      user: {
+        userName: "Sindri"
+      },
+      name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:55",
+      move: {
+        coordinates: [2,0],
+        type: "X"
+      }
+    }];
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+
   });
 
 });

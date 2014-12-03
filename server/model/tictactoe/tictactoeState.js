@@ -6,8 +6,9 @@ var _ = require('lodash');
 
 module.exports = function(history){
   var fullGame = false;
-  var validMove = true;
+  var moveCount = 0;
   var board = [[], [], []];
+  var lastPlayed;
 
   _.each(history, function(event){
     if(event.event === "JoinGame"){
@@ -15,17 +16,18 @@ module.exports = function(history){
     }
     if(event.event === "MoveMade") {
       actualMove(event.move);
+      lastPlayed = event.move.type;
     }
   });
 
-  var checkWin = function(move){
+    function checkResult(move){
 
     for(var i = 0; i < 3; i++) {
       if(!isOccupiedWith(move.coordinates[0], i, move.type)) {
         break;
       }
       if(i === 2) {
-        return true;
+        return "WIN";
       }
     }
 
@@ -35,7 +37,7 @@ module.exports = function(history){
       }
 
       if(j === 2) {
-        return true;
+        return "WIN";
       }
     }
 
@@ -45,7 +47,7 @@ module.exports = function(history){
           break;
         }
         if(k === 2) {
-          return true;
+          return "WIN";
         }
       }
     }
@@ -55,18 +57,25 @@ module.exports = function(history){
         break;
       }
       if(m === 2) {
-        return true;
+        return "WIN";
       }
+    }
+
+    if(moveCount === 9) {
+      return "DRAW";
     }
     return false;
   };
 
-  var isOccupiedWith = function(X,Y,type){
+  function isOccupiedWith(X,Y,type){
     return board[X][Y] === type;
   };
 
   function actualMove(move) {
     board[move.coordinates[0]][move.coordinates[1]] = move.type;
+    moveCount++;
+
+    return checkResult(move);
   };
 
   return {
@@ -74,13 +83,13 @@ module.exports = function(history){
       return fullGame;
     },
     makeMove : function(move) {
-      actualMove(move);
-      return board;
+      return actualMove(move);
     },
     typeAt : function(X, Y) {
-      console.log("X", X);
-      console.log("Y", Y);
       return board[X][Y];
-  }
+    },
+    lastToPlay : function() {
+      return lastPlayed;
+    }
   }
 };
