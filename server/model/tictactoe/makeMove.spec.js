@@ -189,7 +189,69 @@ describe('Playing a game', function() {
     var actualEvent = tictactoe(given).execudeCommand(when);
 
     should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+  });
+
+  it('should get a out of bounds event when someone tries to add a number that is not in the grid', function() {
+
+    var given = [
+      createGame(),
+      joinGame(),
+      moveEvent(0,0,"X", "Sindri")
+    ];
+
+    var when = generateMove(3,3, "O", "Arni");
+
+    var then = [{
+      event: "OutOfBounds",
+      user: {
+        userName: "Arni"
+      },
+      name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:55",
+      move: {
+        coordinates: [3,3],
+        type: "O"
+      }
+    }];
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
 
   });
 
+  it('should play a game and it ends with a draw', function() {
+
+    var given = [
+      createGame(),
+      joinGame(),
+      moveEvent(0,0, "X", "Sindri"),
+      moveEvent(0,1, "O", "Arni"),
+      moveEvent(0,2, "X", "Sindri"),
+      moveEvent(1,2, "O", "Arni"),
+      moveEvent(1,0, "X", "Sindri"),
+      moveEvent(2,0, "O", "Arni"),
+      moveEvent(1,1, "X", "Sindri"),
+      moveEvent(2,2, "O", "Arni")
+    ];
+
+    var when = generateMove(2,1,"X", "Sindri");
+
+    var then = [{
+      event: "GameDrawn",
+      user: {
+        userName: "Sindri"
+      },
+      name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:55",
+      move: {
+        coordinates: [2,1],
+        type: "X"
+      }
+    }]
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+  });
 });
