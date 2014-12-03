@@ -72,7 +72,7 @@ module.exports = function(history) {
 
             if(command.move.coordinates[0] > 2 || command.move.coordinates[1] > 2) {
               return [{
-                event: "IllegalMove",
+                event: "OutOfBounds",
                 user: command.user,
                 name: command.name,
                 timeStamp: command.timeStamp,

@@ -111,7 +111,7 @@ describe('Playing a game', function() {
       }
     ];
 
-    when = generateMove(1,2, "O", "Arni");
+    var when = generateMove(1,2, "O", "Arni");
 
     var then = [{
       event: "IllegalMove",
@@ -142,7 +142,7 @@ describe('Playing a game', function() {
       moveEvent(1,1,"O", "Arni"),
     ];
 
-    when = generateMove(2,0, "X", "Sindri");
+    var when = generateMove(2,0, "X", "Sindri");
     //GameWon
     var then = [{
       event: "GameWon",
@@ -153,6 +153,35 @@ describe('Playing a game', function() {
       timeStamp: "2014-12-02T11:30:55",
       move: {
         coordinates: [2,0],
+        type: "X"
+      }
+    }];
+
+    var actualEvent = tictactoe(given).execudeCommand(when);
+
+    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+
+  });
+
+  it('should return a NotYourTurn event when a player tries to make two moves in a row', function() {
+
+    var given = [
+      createGame(),
+      joinGame(),
+      moveEvent(0,0,"X", "Sindri")
+    ];
+
+    var when = generateMove(0,1, "X", "Sindri");
+
+    var then = [{
+      event: "NotYourTurn",
+      user: {
+        userName: "Sindri"
+      },
+      name: "EliteTicTacToe",
+      timeStamp: "2014-12-02T11:30:55",
+      move: {
+        coordinates: [0,1],
         type: "X"
       }
     }];

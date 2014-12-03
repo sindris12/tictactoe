@@ -65,18 +65,18 @@ module.exports = function(history){
       return "DRAW";
     }
     return false;
-  };
+  }
 
   function isOccupiedWith(X,Y,type){
     return board[X][Y] === type;
-  };
+  }
 
   function actualMove(move) {
     board[move.coordinates[0]][move.coordinates[1]] = move.type;
     moveCount++;
 
     return checkResult(move);
-  };
+  }
 
   return {
     fullGame : function(){
