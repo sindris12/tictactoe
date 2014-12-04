@@ -29,7 +29,7 @@ describe('Create Game', function() {
       timeStamp: "2014-12-02T11:29:29"
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent.length).be.exactly(1);
 
@@ -58,7 +58,7 @@ describe('Create Game', function() {
       timeStamp: "2014-12-02T11:29:29"
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
   });
@@ -85,7 +85,7 @@ describe('Create Game', function() {
       timeStamp: "2014-12-02T11:29:29"
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
 

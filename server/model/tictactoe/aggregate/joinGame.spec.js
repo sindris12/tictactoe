@@ -37,7 +37,7 @@ describe('Joining a game', function() {
       timeStamp: "2014-12-02T11:29:59"
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
     should(actualEvent).eql(then);
   });
 
@@ -80,7 +80,7 @@ describe('Joining a game', function() {
       timeStamp: "2014-12-02T11:30:07"
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
   });

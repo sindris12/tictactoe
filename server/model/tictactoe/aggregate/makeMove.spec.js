@@ -89,7 +89,7 @@ describe('Playing a game', function() {
       }
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
     should(actualEvent).eql(then);
   });
 
@@ -126,7 +126,7 @@ describe('Playing a game', function() {
       }
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
   });
@@ -157,7 +157,7 @@ describe('Playing a game', function() {
       }
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
 
@@ -186,7 +186,7 @@ describe('Playing a game', function() {
       }
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
   });
@@ -214,7 +214,7 @@ describe('Playing a game', function() {
       }
     }];
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
 
@@ -250,7 +250,7 @@ describe('Playing a game', function() {
       }
     }]
 
-    var actualEvent = tictactoe(given).execudeCommand(when);
+    var actualEvent = tictactoe(given).executeCommand(when);
 
     should(actualEvent).eql(then);
   });

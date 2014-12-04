@@ -9,12 +9,13 @@ module.exports = function(history) {
   var boardSize = 2;
 
   return {
-    execudeCommand: function (command) {
+    executeCommand: function (command) {
       console.log(command);
       var commandHandler = {
 
         //Returns a event when a user tries to create a game, and also checks for possible errors
         "CreateGame": function (command) {
+
           if(!command.name) {
             return [{
               event: "NoGameName",
@@ -42,7 +43,6 @@ module.exports = function(history) {
         //Returns a join game event or full game error
         "JoinGame": function (command) {
           if (gameState.fullGame()) {
-            console.log("Sorry the game is full!");
             return [{
               event: "FullGameJoinAttempted",
               user: command.user,
@@ -50,7 +50,6 @@ module.exports = function(history) {
               timeStamp: command.timeStamp
             }];
           }
-          console.log("Game joined");
           return [{
             event: "GameJoined",
             user: command.user,
