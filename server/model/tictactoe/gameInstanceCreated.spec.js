@@ -33,7 +33,7 @@ describe('Create Game', function() {
 
     should(actualEvent.length).be.exactly(1);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
   })
 
   it('should create a game instance without a game name and get a error event', function() {
@@ -60,7 +60,7 @@ describe('Create Game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
   });
 
   it('should create a game instance without a userName and get a error event', function() {
@@ -87,7 +87,7 @@ describe('Create Game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
 
   });
 });

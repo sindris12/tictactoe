@@ -90,7 +90,7 @@ describe('Playing a game', function() {
     }];
 
     var actualEvent = tictactoe(given).execudeCommand(when);
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
   });
 
   it('should get a illegal move event', function() {
@@ -128,7 +128,7 @@ describe('Playing a game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
   });
 
   it('should play a simple game that ends with a win', function() {
@@ -159,7 +159,7 @@ describe('Playing a game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
 
   });
 
@@ -188,7 +188,7 @@ describe('Playing a game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
   });
 
   it('should get a out of bounds event when someone tries to add a number that is not in the grid', function() {
@@ -216,7 +216,7 @@ describe('Playing a game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
 
   });
 
@@ -252,6 +252,6 @@ describe('Playing a game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
+    should(actualEvent).eql(then);
   });
 });

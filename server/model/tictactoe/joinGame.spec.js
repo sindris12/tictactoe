@@ -38,12 +38,7 @@ describe('Joining a game', function() {
     }];
 
     var actualEvent = tictactoe(given).execudeCommand(when);
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
-
-    //should(JSON.stringify(actualEvents)).be.exactly(JSON.stringify(then));
-
-    //LOL
-
+    should(actualEvent).eql(then);
   });
 
   it('should try to join a full game', function() {
@@ -87,7 +82,6 @@ describe('Joining a game', function() {
 
     var actualEvent = tictactoe(given).execudeCommand(when);
 
-    should(JSON.stringify(actualEvent)).be.exactly(JSON.stringify(then));
-
+    should(actualEvent).eql(then);
   });
 });
