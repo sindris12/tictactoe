@@ -3,6 +3,7 @@
  */
 
 var jm = require('jsmockito').JsMockito;
+jm.Integration.importTo(global);
 var _ = require('lodash');
 
 
@@ -10,8 +11,6 @@ describe('tictactoe game context using stubs', function() {
 
   it('should route commands to instantiated tictactoe game with event stream from store and return events. ' +
   'For this test we are using mock style with jsmockito', function() {
-
-    jm.Integration.importTo(global);
 
     var mockEventStore = spy({
       loadEvents: function() {
