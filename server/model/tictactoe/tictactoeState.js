@@ -20,6 +20,7 @@ module.exports = function(history){
     }
   });
 
+    //Function that checks if the game has ended in a win or a draw
     function checkResult(move){
 
     for(var i = 0; i < 3; i++) {
@@ -67,10 +68,12 @@ module.exports = function(history){
     return false;
   }
 
+  //function to check what symbol is in a slot
   function isOccupiedWith(X,Y,type){
     return board[X][Y] === type;
   }
 
+  //the function that adds to the board
   function actualMove(move) {
     board[move.coordinates[0]][move.coordinates[1]] = move.type;
     moveCount++;

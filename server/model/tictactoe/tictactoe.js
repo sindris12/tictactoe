@@ -12,6 +12,8 @@ module.exports = function(history) {
     execudeCommand: function (command) {
       console.log(command);
       var commandHandler = {
+
+        //Returns a event when a user tries to create a game, and also checks for possible errors
         "CreateGame": function (command) {
           if(!command.name) {
             return [{
@@ -36,6 +38,8 @@ module.exports = function(history) {
             timeStamp: command.timeStamp
           }]
         },
+
+        //Returns a join game event or full game error
         "JoinGame": function (command) {
           if (gameState.fullGame()) {
             console.log("Sorry the game is full!");
@@ -58,6 +62,7 @@ module.exports = function(history) {
           if(gameState.fullGame()) {
             //2 users are in the game and the game can start.
 
+            //Check if values that are coming from the user are legal
             if(command.move.coordinates[0] > 2 || command.move.coordinates[1] > 2) {
               return [{
                 event: "OutOfBounds",
@@ -69,6 +74,8 @@ module.exports = function(history) {
             }
 
             var check = gameState.typeAt(command.move.coordinates[0], command.move.coordinates[1]);
+
+            //Check if there is symbol already in the box the user picked.
             if(check) {
               return [{
                 event: "IllegalMove",
@@ -78,10 +85,8 @@ module.exports = function(history) {
                 move: command.move
               }];
             }
-            //still to add a check if the move is valid and if this is actually this players turn to make a move.
 
-            var result = gameState.makeMove(command.move);
-
+            //Check if it's this players turn to make a move
             if(command.move.type === gameState.lastToPlay()) {
               return [{
                 event: "NotYourTurn",
@@ -92,6 +97,10 @@ module.exports = function(history) {
               }];
             }
 
+            //Now we can make the move
+            var result = gameState.makeMove(command.move);
+
+            //Check for win
             if(result === "WIN") {
               return [{
                 event: "GameWon",
@@ -102,6 +111,7 @@ module.exports = function(history) {
               }];
             }
 
+            //Check for draw
             if(result === "DRAW") {
               return [{
                 event: "GameDrawn",
@@ -112,6 +122,7 @@ module.exports = function(history) {
               }];
             }
 
+            //if result is false the game is still live
             if(result === false) {
               return [{
                 event: "MoveMade",
