@@ -57,7 +57,7 @@ var createGame = function() {
 var joinGame = function() {
   return {
     id: "18",
-    event: "JoinGame",
+    event: "GameJoined",
     user: {
       userName: "Arni"
     },

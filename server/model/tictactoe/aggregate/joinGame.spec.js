@@ -58,7 +58,7 @@ describe('Joining a game', function() {
       },
       {
         id: "18",
-        event: "JoinGame",
+        event: "GameJoined",
         user: {
           userName: "Arni"
         },

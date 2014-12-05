@@ -12,6 +12,8 @@ describe('tictactoe game context using stubs', function() {
   it('should route commands to instantiated tictactoe game with event stream from store and return events. ' +
   'For this test we are using mock style with jsmockito', function() {
 
+    /* jshint ignore:start */
+
     var mockEventStore = spy({
       loadEvents : function() {
 
@@ -46,5 +48,7 @@ describe('tictactoe game context using stubs', function() {
     jm.verify(mockEventStore).loadEvents('18');
     jm.verify(mockEventStore).storeEvents('18');
     jm.verify(mockTicTacToe).executeCommand(emptyCommand);
+
+    /* jshint ignore:end */
   });
 });
