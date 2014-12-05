@@ -11,6 +11,7 @@ describe('Joining a game', function() {
   it('should join a created game', function() {
 
     var given = [{
+      id: "18",
       event: "GameCreated",
       user: {
         userName: "Sindri"
@@ -20,6 +21,7 @@ describe('Joining a game', function() {
     }];
 
     var when = {
+      id: "18",
       command: "JoinGame",
       user: {
         userName: "Arni"
@@ -29,6 +31,7 @@ describe('Joining a game', function() {
     };
 
     var then = [{
+      id: "18",
       event: "GameJoined",
       user: {
         userName: "Arni"
@@ -45,6 +48,7 @@ describe('Joining a game', function() {
 
     var given = [
       {
+        id: "18",
         event: "GameCreated",
         user: {
           userName: "Sindri"
@@ -53,6 +57,7 @@ describe('Joining a game', function() {
         timeStamp: "2014-12-02T11:29:29"
       },
       {
+        id: "18",
         event: "JoinGame",
         user: {
           userName: "Arni"
@@ -63,6 +68,7 @@ describe('Joining a game', function() {
     ];
 
     var when = {
+      id: "18",
       command: "JoinGame",
       user: {
         userName: "Doddi"
@@ -72,6 +78,7 @@ describe('Joining a game', function() {
     };
 
     var then = [{
+      id: "18",
       event: "FullGameJoinAttempted",
       user: {
         userName: "Doddi"

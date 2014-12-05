@@ -13,7 +13,10 @@ describe('tictactoe game context using stubs', function() {
   'For this test we are using mock style with jsmockito', function() {
 
     var mockEventStore = spy({
-      loadEvents: function() {
+      loadEvents : function() {
+
+      },
+      storeEvents : function() {
 
       }
     });
@@ -41,6 +44,7 @@ describe('tictactoe game context using stubs', function() {
     boundedContext.handleCommand(emptyCommand);
 
     jm.verify(mockEventStore).loadEvents('18');
+    jm.verify(mockEventStore).storeEvents('18');
     jm.verify(mockTicTacToe).executeCommand(emptyCommand);
   });
 });

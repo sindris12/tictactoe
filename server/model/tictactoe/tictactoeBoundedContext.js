@@ -9,7 +9,10 @@ module.exports = function(eventStore, commandHandler){
   return {
     handleCommand : function(command){
       var eventStream = eventStore.loadEvents(command.id);
-      return commandHandler(eventStream).executeCommand(command);
+      var events= commandHandler(eventStream).executeCommand(command);
+      eventStore.storeEvents(command.id, events);
+      console.log("EVENTSTREAM",eventStream);
+      return events;
     }
   }
 }

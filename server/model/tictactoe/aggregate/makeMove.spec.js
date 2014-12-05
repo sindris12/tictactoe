@@ -12,6 +12,7 @@ var tictactoe = require('./tictactoe');
 // U = User that is making the move
 var generateMove = function(x,y,t,u) {
   return {
+    id: "18",
     command: "MakeMove",
     user: {
       userName: u
@@ -27,6 +28,7 @@ var generateMove = function(x,y,t,u) {
 
 var moveEvent = function(x,y,t,u) {
   return {
+    id: "18",
     event: "MoveMade",
       user: {
     userName: u
@@ -42,6 +44,7 @@ var moveEvent = function(x,y,t,u) {
 
 var createGame = function() {
   return {
+    id: "18",
     event: "GameCreated",
     user: {
       userName: "Sindri"
@@ -53,6 +56,7 @@ var createGame = function() {
 
 var joinGame = function() {
   return {
+    id: "18",
     event: "JoinGame",
     user: {
       userName: "Arni"
@@ -77,6 +81,7 @@ describe('Playing a game', function() {
 
 
     var then = [{
+      id: "18",
       event: "MoveMade",
       user: {
         userName: "Sindri"
@@ -98,6 +103,7 @@ describe('Playing a game', function() {
       createGame(),
       joinGame(),
       {
+        id: "18",
         event: "MoveMade",
         user: {
           userName: "Sindri"
@@ -114,6 +120,7 @@ describe('Playing a game', function() {
     var when = generateMove(1,2, "O", "Arni");
 
     var then = [{
+      id: "18",
       event: "IllegalMove",
       user: {
         userName: "Arni"
@@ -145,6 +152,7 @@ describe('Playing a game', function() {
     var when = generateMove(2,0, "X", "Sindri");
     //GameWon
     var then = [{
+      id: "18",
       event: "GameWon",
       user: {
         userName: "Sindri"
@@ -174,6 +182,7 @@ describe('Playing a game', function() {
     var when = generateMove(0,1, "X", "Sindri");
 
     var then = [{
+      id: "18",
       event: "NotYourTurn",
       user: {
         userName: "Sindri"
@@ -202,6 +211,7 @@ describe('Playing a game', function() {
     var when = generateMove(3,3, "O", "Arni");
 
     var then = [{
+      id: "18",
       event: "OutOfBounds",
       user: {
         userName: "Arni"
@@ -238,6 +248,7 @@ describe('Playing a game', function() {
     var when = generateMove(2,1,"X", "Sindri");
 
     var then = [{
+      id: "18",
       event: "GameDrawn",
       user: {
         userName: "Sindri"

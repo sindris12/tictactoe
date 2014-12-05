@@ -12,6 +12,7 @@ describe('Create Game', function() {
     var given = [];
 
     var when = {
+      id: "18",
       command: "CreateGame",
       user: {
         userName: "Sindri"
@@ -21,6 +22,7 @@ describe('Create Game', function() {
     }
 
     var then = [{
+      id: "18",
       event: "GameCreated",
       user: {
         userName: "Sindri"
@@ -41,6 +43,7 @@ describe('Create Game', function() {
     var given = [];
 
     var when = {
+      id: "18",
       command: "CreateGame",
       user: {
         userName: "Sindri"
@@ -50,6 +53,7 @@ describe('Create Game', function() {
     };
 
     var then = [{
+      id: "18",
       event: "NoGameName",
       user: {
         userName: "Sindri"
@@ -68,6 +72,7 @@ describe('Create Game', function() {
     var given = [];
 
     var when = {
+      id: "18",
       command: "CreateGame",
       user: {
         userName: ""
@@ -77,6 +82,7 @@ describe('Create Game', function() {
     };
 
     var then = [{
+      id: "18",
       event: "NoUserName",
       user: {
         userName: ""

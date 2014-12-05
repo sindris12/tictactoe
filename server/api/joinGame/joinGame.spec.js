@@ -1,5 +1,5 @@
 /**
- * Created by sindrisigurjonsson on 04/12/14.
+ * Created by sindrisigurjonsson on 05/12/14.
  */
 
 'use strict';
@@ -8,11 +8,11 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 
-describe('POST /api/createGame', function() {
+describe('POST /api/joinGame', function() {
   it('should respond with event in JSON array', function(done) {
     var command = {
       id : "18",
-      command: "CreateGame",
+      command: "JoinGame",
       user: {
         userName: "Sindri"
       },
@@ -21,7 +21,7 @@ describe('POST /api/createGame', function() {
     };
     var req = request(app);
     req
-      .post('/api/createGame')
+      .post('/api/joinGame')
       .type('json')
       .send(command)
       .end(function(err, res) {
