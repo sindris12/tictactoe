@@ -18,7 +18,8 @@ describe('Create Game', function() {
         userName: "Sindri"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:29:29"
+      timeStamp: "2014-12-02T11:29:29",
+      symbol: "X"
     }
 
     var then = [{
@@ -28,7 +29,8 @@ describe('Create Game', function() {
         userName: "Sindri"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:29:29"
+      timeStamp: "2014-12-02T11:29:29",
+      symbol: "X"
     }];
 
     var actualEvent = tictactoe(given).executeCommand(when);
@@ -49,7 +51,8 @@ describe('Create Game', function() {
         userName: "Sindri"
       },
       name: "",
-      timeStamp: "2014-12-02T11:29:29"
+      timeStamp: "2014-12-02T11:29:29",
+      symbol: "X"
     };
 
     var then = [{
@@ -78,7 +81,8 @@ describe('Create Game', function() {
         userName: ""
       },
       name: "Elite",
-      timeStamp: "2014-12-02T11:29:29"
+      timeStamp: "2014-12-02T11:29:29",
+      symbol: "X"
     };
 
     var then = [{

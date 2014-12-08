@@ -17,7 +17,8 @@ describe('Joining a game', function() {
         userName: "Sindri"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:29:29"
+      timeStamp: "2014-12-02T11:29:29",
+      symbol: "X"
     }];
 
     var when = {
@@ -27,7 +28,8 @@ describe('Joining a game', function() {
         userName: "Arni"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:29:59"
+      timeStamp: "2014-12-02T11:29:59",
+      symbol: "O"
     };
 
     var then = [{
@@ -37,7 +39,8 @@ describe('Joining a game', function() {
         userName: "Arni"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:29:59"
+      timeStamp: "2014-12-02T11:29:59",
+      symbol: "O"
     }];
 
     var actualEvent = tictactoe(given).executeCommand(when);
@@ -54,7 +57,8 @@ describe('Joining a game', function() {
           userName: "Sindri"
         },
         name: "EliteTicTacToe",
-        timeStamp: "2014-12-02T11:29:29"
+        timeStamp: "2014-12-02T11:29:29",
+        symbol: "X"
       },
       {
         id: "18",
@@ -63,7 +67,8 @@ describe('Joining a game', function() {
           userName: "Arni"
         },
         name: "EliteTicTacToe",
-        timeStamp: "2014-12-02T11:29:59"
+        timeStamp: "2014-12-02T11:29:59",
+        symbol: "O"
       }
     ];
 
@@ -74,7 +79,8 @@ describe('Joining a game', function() {
         userName: "Doddi"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:30:07"
+      timeStamp: "2014-12-02T11:30:07",
+      symbol: "O"
     };
 
     var then = [{

@@ -50,7 +50,8 @@ var createGame = function() {
       userName: "Sindri"
     },
     name: "EliteTicTacToe",
-    timeStamp: "2014-12-02T11:29:29"
+    timeStamp: "2014-12-02T11:29:29",
+    symbol: "X"
   };
 };
 
@@ -62,7 +63,8 @@ var joinGame = function() {
       userName: "Arni"
     },
     name: "EliteTicTacToe",
-    timeStamp: "2014-12-02T11:29:59"
+    timeStamp: "2014-12-02T11:29:59",
+    symbol: "O"
   };
 };
 

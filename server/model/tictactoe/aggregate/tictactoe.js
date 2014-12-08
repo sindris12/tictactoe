@@ -39,7 +39,8 @@ module.exports = function(history) {
             event: "GameCreated",
             user: command.user,
             name: command.name,
-            timeStamp: command.timeStamp
+            timeStamp: command.timeStamp,
+            symbol: command.symbol
           }]
         },
 
@@ -59,7 +60,8 @@ module.exports = function(history) {
             event: "GameJoined",
             user: command.user,
             name: command.name,
-            timeStamp: command.timeStamp
+            timeStamp: command.timeStamp,
+            symbol: command.symbol
           }];
         },
         "MakeMove": function(command) {
