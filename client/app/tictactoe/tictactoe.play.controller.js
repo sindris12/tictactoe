@@ -7,6 +7,7 @@
 angular.module('tictactoeApp')
   .controller('TicTacToePlayCtrl', function ($scope, $http, TicService, $stateParams) {
 
+    $scope.headerText = 'Waiting for player to join the game';
     $scope.userName = TicService.getUserName();
     $scope.created = TicService.getCreated();
     $scope.myType = TicService.getType();
@@ -30,6 +31,8 @@ angular.module('tictactoeApp')
 
     $scope.processEvents = function(events){
 
+      $scope.history = events;
+
       angular.forEach(events, function(event) {
         console.log(event);
 
@@ -40,10 +43,18 @@ angular.module('tictactoeApp')
         if(event.event === 'GameJoined') {
           $scope.created = $scope.userName;
           $scope.showJoin = true;
+          $scope.headerText = 'Enjoy the game';
         }
 
         if(event.event === 'MoveMade' || event.event === 'GameWon' || event.event === 'GameDrawn') {
           $scope.board[event.move.coordinates[0]][event.move.coordinates[1]] = event.move.type;
+
+          if(event.event === 'GameWon') {
+            $scope.gameOver = '' +$scope.userName + ' won the game!';
+          }
+          else if(event.event === 'GameDrawn') {
+            $scope.gameOver = 'Game ended with a draw';
+          }
         }
       });
     };

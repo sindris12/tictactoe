@@ -10,8 +10,6 @@ var app = require('../../app');
 // Get list of events
 exports.getEvents = function(req, res) {
 
-  console.log("HERE");
-
   if(!app.eventStore) {
     app.eventStore = require('../../eventstore/memorystore')();
   }
