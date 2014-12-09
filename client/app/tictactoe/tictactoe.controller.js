@@ -36,6 +36,7 @@ angular.module('tictactoeApp')
         postPromise.then(function(data){
           TicService.setUserName($scope.userName);
           TicService.setGameName($scope.gameName);
+          TicService.setCreated($scope.userName);
           TicService.setType('X');
           $scope.processEvents(data.data);
         });

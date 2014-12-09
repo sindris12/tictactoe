@@ -10,6 +10,7 @@ angular.module('tictactoeApp')
     var userName;
     var gameName;
     var myType;
+    var creator;
 
     // Public API here
     return {
@@ -31,6 +32,12 @@ angular.module('tictactoeApp')
       },
       setType: function(t) {
         myType = t;
+      },
+      setCreated: function(c) {
+        creator = c;
+      },
+      getCreated: function(){
+        return creator;
       }
     };
   });

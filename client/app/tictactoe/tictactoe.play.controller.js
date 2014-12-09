@@ -8,6 +8,7 @@ angular.module('tictactoeApp')
   .controller('TicTacToePlayCtrl', function ($scope, $http, TicService, $stateParams) {
 
     $scope.userName = TicService.getUserName();
+    $scope.created = TicService.getCreated();
     $scope.myType = TicService.getType();
     $scope.theid = $stateParams.id;
     $scope.board = [
@@ -37,6 +38,7 @@ angular.module('tictactoeApp')
         }
 
         if(event.event === 'GameJoined') {
+          $scope.created = $scope.userName;
           $scope.showJoin = true;
         }
 
