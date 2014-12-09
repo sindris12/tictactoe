@@ -24,24 +24,28 @@ describe('Controller: TicTacToePlayCtrl', function () {
     });
   }));
 
+  /* jshint ignore:start */
+
   afterEach(function () {
     httpBackend.verifyNoOutstandingExpectation();
     httpBackend.verifyNoOutstandingRequest();
   });
 
+  /* jshint ignore:end */
+
   it('should join a game', function () {
 
-    scope.theid = "18";
+    scope.theid = '18';
 
     httpBackend.expectPOST('/api/joinGame/', {
-      id : "18",
-      command: "JoinGame",
+      id : '18',
+      command: 'JoinGame',
       user: {
-        userName: "Sindri"
+        userName: 'Sindri'
       },
-      name: "AwesomeTic",
-      timeStamp: "2014-12-02T11:29:29",
-      symbol: "O"
+      name: 'AwesomeTic',
+      timeStamp: '2014-12-02T11:29:29',
+      symbol: 'O'
     }).respond({
       response: [
         {}
@@ -50,20 +54,20 @@ describe('Controller: TicTacToePlayCtrl', function () {
 
     httpBackend.expectGET('/api/events/18').respond({
       data: {
-        event: "GameJoined",
+        event: 'GameJoined',
         user: {
-          userName: "Sindri"
+          userName: 'Sindri'
         }
         }
     });
 
-    scope.gameName ="AwesomeTic";
-    scope.joinGame("Sindri");
+    scope.gameName ='AwesomeTic';
+    scope.joinGame('Sindri');
     httpBackend.flush();
 
     expect(scope.processEvents.length).toBe(1);
-    expect(scope.userName).toBe("Sindri");
-    expect(scope.myType).toBe("O");
+    expect(scope.userName).toBe('Sindri');
+    expect(scope.myType).toBe('O');
     expect(scope.showJoin).toBe(true);
   });
 
@@ -71,17 +75,17 @@ describe('Controller: TicTacToePlayCtrl', function () {
 
     httpBackend.whenPOST('/api/joinGame/').respond(200);
 
-    scope.theid = "18";
+    scope.theid = '18';
 
     httpBackend.expectPOST('/api/placeMove', {
-      id : "18",
-      command: "MakeMove",
+      id : '18',
+      command: 'MakeMove',
       user: {
       },
-      timeStamp: "2014-12-02T11:29:29",
+      timeStamp: '2014-12-02T11:29:29',
       move: {
         coordinates: [0,0],
-        type: "X"
+        type: 'X'
       }
     }).respond({
       response: [
@@ -91,38 +95,38 @@ describe('Controller: TicTacToePlayCtrl', function () {
 
     httpBackend.expectGET('/api/events/18').respond({
       data: {
-        event: "MoveMade",
+        event: 'MoveMade',
         user: {
         },
         move: {
           coordinates: [0,0],
-          type: "X"
+          type: 'X'
         }
       }
     });
 
-    scope.makeMove(0,0,"X");
+    scope.makeMove(0,0,'X');
     httpBackend.flush();
 
     expect(scope.processEvents.length).toBe(1);
-    expect(scope.board[0][0]).toBe("X");
+    expect(scope.board[0][0]).toBe('X');
   });
 
   it('should make a move and win the game', function () {
 
     httpBackend.whenPOST('/api/joinGame/').respond(200);
 
-    scope.theid = "18";
+    scope.theid = '18';
 
     httpBackend.expectPOST('/api/placeMove', {
-      id : "18",
-      command: "MakeMove",
+      id : '18',
+      command: 'MakeMove',
       user: {
       },
-      timeStamp: "2014-12-02T11:29:29",
+      timeStamp: '2014-12-02T11:29:29',
       move: {
         coordinates: [1,1],
-        type: "X"
+        type: 'X'
       }
     }).respond({
       response: [
@@ -132,35 +136,35 @@ describe('Controller: TicTacToePlayCtrl', function () {
 
     httpBackend.expectGET('/api/events/18').respond({
       data: {
-        event: "GameWon",
+        event: 'GameWon',
         user: {
         },
         move: {
           coordinates: [1,1],
-          type: "X"
+          type: 'X'
         }
       }
     });
 
-    scope.makeMove(1,1,"X");
+    scope.makeMove(1,1,'X');
     httpBackend.flush();
 
     expect(scope.processEvents.length).toBe(1);
-    expect(scope.board[1][1]).toBe("X");
+    expect(scope.board[1][1]).toBe('X');
   });
 
   it('should try to join a game with no username', function () {
 
-    scope.theid = "18";
+    scope.theid = '18';
 
     httpBackend.expectPOST('/api/joinGame/', {
-      id : "18",
-      command: "JoinGame",
+      id : '18',
+      command: 'JoinGame',
       user: {
       },
-      name: "AwesomeTic",
-      timeStamp: "2014-12-02T11:29:29",
-      symbol: "O"
+      name: 'AwesomeTic',
+      timeStamp: '2014-12-02T11:29:29',
+      symbol: 'O'
     }).respond({
       response: [
         {}
@@ -169,15 +173,15 @@ describe('Controller: TicTacToePlayCtrl', function () {
 
     httpBackend.expectGET('/api/events/18').respond({
       data: {
-        event: "NoUserName",
+        event: 'NoUserName',
         user: {
         },
-        name: "AwesomeTic"
+        name: 'AwesomeTic'
       }
     });
 
 
-    scope.gameName ="AwesomeTic";
+    scope.gameName ='AwesomeTic';
     scope.joinGame();
     httpBackend.flush();
 
