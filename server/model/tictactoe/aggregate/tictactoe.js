@@ -18,7 +18,7 @@ module.exports = function(history) {
 
           if(!command.name) {
             return [{
-              id: command.id,
+              id: String(command.id),
               event: "NoGameName",
               user: command.user,
               name: command.name,
@@ -27,7 +27,7 @@ module.exports = function(history) {
           }
           if(!command.user.userName) {
             return [{
-              id: command.id,
+              id: String(command.id),
               event: "NoUserName",
               user: command.user,
               name: command.name,
@@ -35,7 +35,7 @@ module.exports = function(history) {
             }];
           }
           return [{
-            id: command.id,
+            id: String(command.id),
             event: "GameCreated",
             user: command.user,
             name: command.name,
@@ -48,7 +48,7 @@ module.exports = function(history) {
         "JoinGame": function (command) {
           if (gameState.fullGame()) {
             return [{
-              id: command.id,
+              id: String(command.id),
               event: "FullGameJoinAttempted",
               user: command.user,
               name: command.name,
@@ -56,7 +56,7 @@ module.exports = function(history) {
             }];
           }
           return [{
-            id: command.id,
+            id: String(command.id),
             event: "GameJoined",
             user: command.user,
             name: command.name,
@@ -77,7 +77,7 @@ module.exports = function(history) {
             if(command.move.coordinates[0] > 2 || command.move.coordinates[1] > 2) {
               console.log("OUT OF BOUNDS");
               return [{
-                id: command.id,
+                id: String(command.id),
                 event: "OutOfBounds",
                 user: command.user,
                 name: command.name,
@@ -92,7 +92,7 @@ module.exports = function(history) {
             if(check) {
               console.log("ILLEGAL MOVE");
               return [{
-                id: command.id,
+                id: String(command.id),
                 event: "IllegalMove",
                 user: command.user,
                 name: command.name,
@@ -100,12 +100,11 @@ module.exports = function(history) {
                 move: command.move
               }];
             }
-
             //Check if it's this players turn to make a move
             if(command.move.type === gameState.lastToPlay()) {
               console.log("NOT YOUR TURN");
               return [{
-                id: command.id,
+                id: String(command.id),
                 event: "NotYourTurn",
                 user: command.user,
                 name: command.name,
@@ -121,7 +120,7 @@ module.exports = function(history) {
             //Check for win
             if(result === "WIN") {
               return [{
-                id: command.id,
+                id: String(command.id),
                 event: "GameWon",
                 user: command.user,
                 name: command.name,
@@ -133,7 +132,7 @@ module.exports = function(history) {
             //Check for draw
             if(result === "DRAW") {
               return [{
-                id: command.id,
+                id: String(command.id),
                 event: "GameDrawn",
                 user: command.user,
                 name: command.name,
@@ -146,7 +145,7 @@ module.exports = function(history) {
             if(result === false) {
               console.log("RIGHT PLACE");
               return [{
-                id: command.id,
+                id: String(command.id),
                 event: "MoveMade",
                 user: command.user,
                 name: command.name,

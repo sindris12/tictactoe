@@ -13,6 +13,9 @@ var _ = require('lodash');
 
 // Get list of things
 exports.index = function(req, res) {
+
+  console.log("THNwfds");
+
   res.json([
   {
   name : 'Development Tools',

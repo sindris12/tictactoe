@@ -11,5 +11,9 @@ angular.module('tictactoeApp')
         url: '/',
         templateUrl: 'app/tictactoe/tictactoe.html',
         controller: 'TicTacToeCtrl'
+      }).state('play', {
+        url: '/play/{id}',
+        templateUrl: 'app/tictactoe/tictactoe.play.html',
+        controller: 'TicTacToePlayCtrl'
       });
   });

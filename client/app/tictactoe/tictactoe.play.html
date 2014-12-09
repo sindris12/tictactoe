@@ -1,0 +1,52 @@
+<div>
+  <header class="hero-unit" id="banner">
+    <div class="container">
+      <h1>TicTacToe</h1>
+      <p class="lead">Play the world famous TicTacToe game here!</p>
+    </div>
+  </header>
+</div>
+
+<div class="container" ng-if="!showJoin">
+  <div class="row">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="inputUserName" class="col-sm-2 control-label">UserName</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputUserName" placeholder="UserName" ng-model="userName">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+          <button type="submit" class="btn btn-success" ng-click="joinGame(userName)">Join Game</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" ng-if="showJoin">
+  <div class="row">
+    <div class="col-md-6 .col-md-offset-3">
+      <table id="tictactoe">
+        <tbody>
+        <tr>
+          <td id="cell1" ng-click="makeMove(0,0, myType)"> {{board[0][0]}} </td>
+          <td id="cell2" ng-click="makeMove(0,1, myType)"> {{board[0][1]}} </td>
+          <td id="cell3" ng-click="makeMove(0,2, myType)"> {{board[0][2]}} </td>
+        </tr>
+        <tr>
+          <td id="cell4" ng-click="makeMove(1,0, myType)"> {{board[1][0]}} </td>
+          <td id="cell5" ng-click="makeMove(1,1, myType)"> {{board[1][1]}} </td>
+          <td id="cell6" ng-click="makeMove(1,2, myType)"> {{board[1][2]}} </td>
+        </tr>
+        <tr>
+          <td id="cell7" ng-click="makeMove(2,0, myType)"> {{board[2][0]}} </td>
+          <td id="cell8" ng-click="makeMove(2,1, myType)"> {{board[2][1]}} </td>
+          <td id="cell9" ng-click="makeMove(2,2, myType)"> {{board[2][2]}} </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

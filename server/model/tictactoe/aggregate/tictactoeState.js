@@ -11,7 +11,7 @@ module.exports = function(history){
   var fullGame = false;
   var moveCount = 0;
   var board = [[], [], []];
-  var lastPlayed;
+  var lastPlayed = 'O';
 
   _.each(history, function(event){
 
@@ -88,6 +88,15 @@ module.exports = function(history){
     return checkResult(move);
   }
 
+  function firstTo(type) {
+    if(moveCount === 0 && type === 'X') {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   return {
     fullGame : function(){
       return fullGame;
@@ -100,6 +109,9 @@ module.exports = function(history){
     },
     lastToPlay : function() {
       return lastPlayed;
+    },
+    firstToPlay : function(type) {
+      return firstTo(type);
     }
   }
 };
