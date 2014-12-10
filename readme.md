@@ -3,6 +3,10 @@
 [ ![Codeship Status for sindris12/tictactoe](https://codeship.com/projects/0a676790-5951-0132-0c75-6e3b1978079c/status?branch=master)](https://codeship.com/projects/50241)
 Project Template for TicTacToe
 
+``` 
+http://tic.1989.is/
+``` 
+
 =========
 
 Getting started with this project template. After this you should have the project up-and-running on a Digital Ocean
