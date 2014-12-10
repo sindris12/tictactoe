@@ -5,18 +5,30 @@
 'use strict';
 
 var gameDSL = require('./game.dsl.js');
+var playDSL = require('./play.dsl.js');
+
+function waitingInTheMoonlight(play, element) {
+  browser.driver.wait(function(){
+    return    browser.driver.isElementPresent(by.css('+ element +')).then(function(el){
+      return el === true;
+    });
+  }).then(function(){
+    play.MakeMoveCell1();
+  });
+}
+
 
 describe('TicTacToe game play', function() {
   var page;
   var game;
   var playPage;
-  var playDSL;
+  var play;
 
   beforeEach(function() {
     browser.get('/');
     page = require('./createGame.po.js');
     playPage = require('./playGame.po.js');
-    playDSL = gameDSL(playPage);
+    play = playDSL(playPage);
     game = gameDSL(page);
   });
 
@@ -88,7 +100,6 @@ describe('TicTacToe game play', function() {
 
         // open new window
         browser.executeScript('window.open("' + data +'", "second-window")');
-        //var secondHandle = handles[1];
 
         // switch to new window
         browser.switchTo().window('second-window');
@@ -97,10 +108,28 @@ describe('TicTacToe game play', function() {
         game.joinGame();
         game.waitForTictactoePage();
 
-        // do something within context of new window
-
         // switch to original window
         browser.switchTo().window(originalHandle);
+
+        browser.driver.wait(function(){
+          return    browser.driver.isElementPresent(by.css('#tictactoe')).then(function(el){
+            return el === true;
+          });
+        }).then(function(){
+            game.expectGameBoardShowing();
+
+            play.MakeMoveCell1('X');
+            browser.switchTo().window('second-window');
+            play.MakeMoveCell2('O');
+            browser.switchTo().window(originalHandle);
+            play.MakeMoveCell4('X');
+            browser.switchTo().window('second-window');
+            play.MakeMoveCell3('O');
+            browser.switchTo().window(originalHandle);
+            play.MakeMoveCell7('X');
+            game.waitForTictactoePage();
+            play.CheckWinner();
+        });
 
         // do something within context of original window
 
@@ -109,4 +138,5 @@ describe('TicTacToe game play', function() {
       });
     })
   });
+
 });
