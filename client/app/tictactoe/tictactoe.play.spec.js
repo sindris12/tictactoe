@@ -189,5 +189,4 @@ describe('Controller: TicTacToePlayCtrl', function () {
     expect(scope.userName).toBe(undefined);
     expect(scope.showJoin).toBe(undefined);
   });
-
 });

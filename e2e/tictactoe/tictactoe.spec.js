@@ -139,7 +139,7 @@ describe('TicTacToe game play', function() {
     })
   });
 
-  it('should create, join and play a simple game', function() {
+  it('should create, join and play a game that ends with a draw', function() {
     game.nameOfGame("Cheese!");
     game.nameOfUser("Sindri");
     game.createGame();
