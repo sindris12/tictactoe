@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('tictactoeApp')
-  .controller('TicTacToePlayCtrl', function ($scope, $http, TicService, $stateParams) {
+  .controller('TicTacToePlayCtrl', function ($scope, $http, TicService, $stateParams, $interval) {
 
     $scope.headerText = 'Waiting for player to join the game';
     $scope.userName = TicService.getUserName();
@@ -93,7 +93,8 @@ angular.module('tictactoeApp')
         $scope.refreshEvents();
       });
     };
-    setInterval(function() {
+
+    $interval(function() {
       $scope.refreshEvents();
-    }, 5000);
+    }, 3000);
   });
