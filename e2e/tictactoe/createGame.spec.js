@@ -84,7 +84,7 @@ describe('TicTacToe game play', function() {
     })
   });
 
-  it('should create, join and play a game', function() {
+  it('should create, join and play a simple game', function() {
     game.nameOfGame("Cheese!");
     game.nameOfUser("Sindri");
     game.createGame();
@@ -128,10 +128,71 @@ describe('TicTacToe game play', function() {
             browser.switchTo().window(originalHandle);
             play.MakeMoveCell7('X');
             game.waitForTictactoePage();
-            play.CheckWinner();
+            play.CheckOutcome("Game Over: Sindri won the game!");
         });
 
         // do something within context of original window
+
+        // closes the current window
+        browser.executeScript('window.close()');
+      });
+    })
+  });
+
+  it('should create, join and play a simple game', function() {
+    game.nameOfGame("Cheese!");
+    game.nameOfUser("Sindri");
+    game.createGame();
+    game.waitForTictactoePage();
+
+    browser.getCurrentUrl().then(function(data) {
+      console.log("URL ", data);
+
+      browser.getAllWindowHandles().then(function (handles) {
+
+        // handle of first window
+        var originalHandle = handles[0];
+
+        // open new window
+        browser.executeScript('window.open("' + data +'", "second-window")');
+
+        // switch to new window
+        browser.switchTo().window('second-window');
+
+        game.nameOfJoinUser("Arni");
+        game.joinGame();
+        game.waitForTictactoePage();
+
+        // switch to original window
+        browser.switchTo().window(originalHandle);
+
+        browser.driver.wait(function(){
+          return    browser.driver.isElementPresent(by.css('#tictactoe')).then(function(el){
+            return el === true;
+          });
+        }).then(function(){
+          game.expectGameBoardShowing();
+
+          play.MakeMoveCell1('X');
+          browser.switchTo().window('second-window');
+          play.MakeMoveCell2('O');
+          browser.switchTo().window(originalHandle);
+          play.MakeMoveCell3('X');
+          browser.switchTo().window('second-window');
+          play.MakeMoveCell4('O');
+          browser.switchTo().window(originalHandle);
+          play.MakeMoveCell6('X');
+          browser.switchTo().window('second-window');
+          play.MakeMoveCell5('O');
+          browser.switchTo().window(originalHandle);
+          play.MakeMoveCell7('X');
+          browser.switchTo().window('second-window');
+          play.MakeMoveCell9('O');
+          browser.switchTo().window(originalHandle);
+          play.MakeMoveCell8('X');
+          game.waitForTictactoePage();
+          play.CheckOutcome("Game Over: Game ended with a draw");
+        });
 
         // closes the current window
         browser.executeScript('window.close()');

@@ -50,8 +50,8 @@ module.exports = function(page){
     expect(page.cell9.getText()).toBe(type);
   }
 
-  function CheckWinner() {
-    expect(page.winner.getText()).toBe('Game Over: Sindri won the game!');
+  function CheckOutcome(message) {
+    expect(page.winner.getText()).toBe(message);
   }
 
   return {
@@ -64,7 +64,6 @@ module.exports = function(page){
     MakeMoveCell7:MakeMoveCell7,
     MakeMoveCell8:MakeMoveCell8,
     MakeMoveCell9:MakeMoveCell9,
-    CheckWinner:CheckWinner
+    CheckOutcome:CheckOutcome
   }
 };
-
