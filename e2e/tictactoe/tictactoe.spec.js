@@ -7,17 +7,6 @@
 var gameDSL = require('./game.dsl.js');
 var playDSL = require('./play.dsl.js');
 
-function waitingInTheMoonlight(play, element) {
-  browser.driver.wait(function(){
-    return    browser.driver.isElementPresent(by.css('+ element +')).then(function(el){
-      return el === true;
-    });
-  }).then(function(){
-    play.MakeMoveCell1();
-  });
-}
-
-
 describe('TicTacToe game play', function() {
   var page;
   var game;
@@ -199,5 +188,4 @@ describe('TicTacToe game play', function() {
       });
     })
   });
-
 });
