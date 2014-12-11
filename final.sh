@@ -11,4 +11,5 @@ echo "Npm install"
 npm install
 echo "Bower install"
 bower install
+node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
 grunt test:e2e
