@@ -9,14 +9,17 @@ describe('Controller: TicTacToeCtrl', function () {
   // load the controller's module
   beforeEach(module('tictactoeApp'));
 
-  var TicController, scope, httpBackend, http;
+  var TicController, scope, httpBackend, http, state;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($injector, $controller, $rootScope, $http) {
+  beforeEach(inject(function ($injector, $controller, $rootScope, $http, $state) {
     http = $http;
+    state = $state;
     httpBackend = $injector.get('$httpBackend');
     httpBackend.whenGET('app/tictactoe/tictactoe.html').respond(200);
-
+    /* jshint ignore:start */
+    spyOn(state, 'go');
+    /* jshint ignore:end */
     scope = $rootScope.$new();
     TicController = $controller('TicTacToeCtrl', {
       $scope: scope
@@ -31,6 +34,31 @@ describe('Controller: TicTacToeCtrl', function () {
   });
 
   /* jshint ignore:end */
+
+  it('should process events and call state to route to play page', function () {
+
+    var event = [{
+      id: '18',
+      event: 'GameCreated'
+    }];
+
+    scope.processEvents(event);
+
+    expect(state.go).toHaveBeenCalled();
+    httpBackend.flush();
+  });
+
+  it('should process events and call state', function () {
+
+    var event = [{
+      id: '18',
+      event: 'GameJoined'
+    }];
+    scope.processEvents(event);
+
+    expect(state.go).toHaveBeenCalled();
+    httpBackend.flush();
+  });
 
   it('should post variables from scope for name and userName and process resulting events', function () {
 

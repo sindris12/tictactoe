@@ -189,4 +189,58 @@ describe('Controller: TicTacToePlayCtrl', function () {
     expect(scope.userName).toBe(undefined);
     expect(scope.showJoin).toBe(undefined);
   });
+
+  it('should make a move and the the game ends with a draw', function () {
+
+    httpBackend.whenPOST('/api/joinGame/').respond(200);
+
+    scope.theid = '18';
+
+    httpBackend.expectPOST('/api/placeMove', {
+      id : '18',
+      command: 'MakeMove',
+      user: {
+      },
+      timeStamp: '2014-12-02T11:29:29',
+      move: {
+        coordinates: [1,1],
+        type: 'X'
+      }
+    }).respond({
+      response: [
+        {}
+      ]
+    });
+
+    httpBackend.expectGET('/api/events/18').respond({
+      data: {
+        event: 'GameDrawn',
+        user: {
+        },
+        move: {
+          coordinates: [1,1],
+          type: 'X'
+        }
+      }
+    });
+
+    scope.makeMove(1,1,'X');
+    httpBackend.flush();
+
+    expect(scope.processEvents.length).toBe(1);
+    expect(scope.gameOver).toBe('Game ended with a draw');
+  });
+
+  it('should call process events and set scope.gameName', function() {
+
+    var event = [{
+      id: '18',
+      event: 'GameCreated',
+      name: 'AwesomeTic'
+    }];
+
+    scope.processEvents(event);
+    httpBackend.flush();
+    expect(scope.gameName).toBe('AwesomeTic');
+  });
 });
