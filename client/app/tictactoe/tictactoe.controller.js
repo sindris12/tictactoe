@@ -25,7 +25,9 @@ angular.module('tictactoeApp')
       getPromise.then(function(data) {
         $scope.playCount = data.data;
       });
-    }
+    };
+
+    console.log("COMMON!!!!");
 
     $scope.myid = generateUUID();
     /* jshint ignore:end */
