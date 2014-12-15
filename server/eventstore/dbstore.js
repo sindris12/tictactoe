@@ -22,7 +22,7 @@ module.exports = {
         deferred.resolve(count);
       });
 
-    return deferred.promise;
-  }
+      return deferred.promise;
+    }
 };
 
