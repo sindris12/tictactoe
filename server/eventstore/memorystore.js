@@ -5,6 +5,7 @@
 module.exports = function(){
   var store = {};
   return {
+
     loadEvents : function(id){
       return store[id] || [];
     },

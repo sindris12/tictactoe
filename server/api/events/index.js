@@ -14,5 +14,6 @@ var controller = require('./events.controller');
 var router = express.Router();
 
 router.get('/:id', controller.getEvents);
+router.get('/e/count', controller.getGamesPlayed);
 
 module.exports = router;

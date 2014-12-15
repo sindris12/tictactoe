@@ -19,9 +19,18 @@ angular.module('tictactoeApp')
       return uuid;
     }
 
-    $scope.myid = generateUUID();
+    $scope.getCount = function() {
+      var getPromise = $http.get('/api/events/e/count/');
 
+      getPromise.then(function(data) {
+        $scope.playCount = data.data;
+      });
+    }
+
+    $scope.myid = generateUUID();
     /* jshint ignore:end */
+
+    $scope.getCount();
 
     $scope.processEvents = function(events){
       angular.forEach(events, function(event) {

@@ -20,3 +20,12 @@ exports.getEvents = function(req, res) {
 
   res.json(store.loadEvents(req.params.id));
 };
+
+//Get count of all games played !
+exports.getGamesPlayed = function(req, res) {
+  var dataBase = require('../../eventstore/dbstore');
+
+  dataBase.gamesPlayed().then(function(data) {
+    res.json(data);
+  })
+};

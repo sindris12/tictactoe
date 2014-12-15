@@ -17,6 +17,7 @@ describe('Controller: TicTacToeCtrl', function () {
     state = $state;
     httpBackend = $injector.get('$httpBackend');
     httpBackend.whenGET('app/tictactoe/tictactoe.html').respond(200);
+    httpBackend.whenGET('/api/events/e/count/').respond(200);
     /* jshint ignore:start */
     spyOn(state, 'go');
     /* jshint ignore:end */
