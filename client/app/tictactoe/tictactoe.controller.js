@@ -27,8 +27,6 @@ angular.module('tictactoeApp')
       });
     };
 
-    console.log("COMMON!!!!");
-
     $scope.myid = generateUUID();
     /* jshint ignore:end */
 
