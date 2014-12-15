@@ -5,14 +5,17 @@
 'use strict';
 
 var express = require('express');
-var controller = require('../command.controller');
 
-module.exports = function(app){
+module.exports = function(eventStore){
+
+
   var router = express.Router();
 
+  var controller = require('../command.controller')(eventStore);
   router.post('/', controller.executeCommand);
 
   return {
     router:router
   }
-}
+
+};

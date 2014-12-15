@@ -24,7 +24,6 @@ describe('In memory event store', function() {
     store.storeEvents('18', [{"id":"1", name: "Sindri", gameName: "Awesome"}]);
 
     var loadedEvents = store.loadEvents('18');
-    console.log(loadedEvents);
     should(loadedEvents).eql([{"id":"1", name: "Sindri", gameName: "Awesome"}]);
   });
 

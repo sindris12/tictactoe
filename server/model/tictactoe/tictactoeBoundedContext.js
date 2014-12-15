@@ -3,18 +3,27 @@
  */
 
 var _ = require('lodash');
-var dataBase = require('../../eventstore/dbstore');
+var q = require('q');
 
 module.exports = function(eventStore, commandHandler){
 
   return {
     handleCommand : function(command){
-      var eventStream = eventStore.loadEvents(command.id);
-      var events= commandHandler(eventStream).executeCommand(command);
-      eventStore.storeEvents(command.id, events);
-      dataBase.storeEvents(command.id, events);
-      console.log("EVENTSTREAM",eventStream);
-      return events;
+
+      var deferred = q.defer();
+
+      eventStore.loadEvents(command.id).then(function(eventStream) {
+
+        var events = commandHandler(eventStream).executeCommand(command);
+
+        eventStore.storeEvents(command.id, events).then(function() {
+          console.log("EVENT: !!!!!!!: ", events);
+          deferred.resolve(events);
+        }, function(err) {
+          deferred.reject(err);
+        })
+      });
+      return deferred.promise;
     }
   }
-}
+};

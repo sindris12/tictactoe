@@ -9,11 +9,15 @@
 'use strict';
 
 var express = require('express');
-var controller = require('./events.controller');
-
 var router = express.Router();
 
-router.get('/:id', controller.getEvents);
-router.get('/e/count', controller.getGamesPlayed);
+module.exports = function(eventStore){
+  var controller = require('./events.controller')(eventStore);
 
-module.exports = router;
+  router.get('/e/count', controller.getGamesPlayed);
+  router.get('/:id', controller.getEvents);
+
+  return {
+    router: router
+  }
+};

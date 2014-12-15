@@ -6,8 +6,6 @@ var _ = require('lodash');
 
 module.exports = function(history){
 
-  console.log("HISTORY", history);
-
   var fullGame = false;
   var moveCount = 0;
   var board = [[], [], []];
@@ -15,10 +13,7 @@ module.exports = function(history){
 
   _.each(history, function(event){
 
-    console.log("EVENT IN STATE", event);
-
     if(event.event === "GameJoined"){
-      console.log("GOING HERE ?");
       fullGame = true;
     }
     if(event.event === "MoveMade") {

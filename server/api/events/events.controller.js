@@ -7,25 +7,17 @@
 var _ = require('lodash');
 var app = require('../../app');
 
-// Get list of events
-exports.getEvents = function(req, res) {
-
-  if(!app.eventStore) {
-    app.eventStore = require('../../eventstore/memorystore')();
+module.exports = function (eventStore) {
+  return {
+    getEvents : function(req,res) {
+      eventStore.loadEvents(req.params.id).then(function(events){
+        res.json(events);
+      })
+    },
+    getGamesPlayed : function(req,res) {
+      eventStore.getGamesPlayed().then(function(count) {
+        res.json(count);
+      });
+    }
   }
-
-  var store = app.eventStore;
-
-  console.log(req.params.id);
-
-  res.json(store.loadEvents(req.params.id));
-};
-
-//Get count of all games played !
-exports.getGamesPlayed = function(req, res) {
-  var dataBase = require('../../eventstore/dbstore');
-
-  dataBase.gamesPlayed().then(function(data) {
-    res.json(data);
-  })
-};
+}

@@ -10,7 +10,6 @@ module.exports = function(history) {
 
   return {
     executeCommand: function (command) {
-      console.log(command);
       var commandHandler = {
 
         //Returns a event when a user tries to create a game, and also checks for possible errors
@@ -66,16 +65,11 @@ module.exports = function(history) {
         },
         "MakeMove": function(command) {
 
-          console.log("MAKE MOVE");
-
           if(gameState.fullGame()) {
-
-            console.log("GAME IS FULL");
             //2 users are in the game and the game can start.
 
             //Check if values that are coming from the user are legal
             if(command.move.coordinates[0] > 2 || command.move.coordinates[1] > 2) {
-              console.log("OUT OF BOUNDS");
               return [{
                 id: String(command.id),
                 event: "OutOfBounds",
@@ -90,7 +84,6 @@ module.exports = function(history) {
 
             //Check if there is symbol already in the box the user picked.
             if(check) {
-              console.log("ILLEGAL MOVE");
               return [{
                 id: String(command.id),
                 event: "IllegalMove",
@@ -102,7 +95,6 @@ module.exports = function(history) {
             }
             //Check if it's this players turn to make a move
             if(command.move.type === gameState.lastToPlay()) {
-              console.log("NOT YOUR TURN");
               return [{
                 id: String(command.id),
                 event: "NotYourTurn",
@@ -115,7 +107,6 @@ module.exports = function(history) {
 
             //Now we can make the move
             var result = gameState.makeMove(command.move);
-            console.log("RESULT", result);
 
             //Check for win
             if(result === "WIN") {
@@ -143,7 +134,6 @@ module.exports = function(history) {
 
             //if result is false the game is still live
             if(result === false) {
-              console.log("RIGHT PLACE");
               return [{
                 id: String(command.id),
                 event: "MoveMade",

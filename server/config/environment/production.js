@@ -3,6 +3,7 @@
 // Production specific configuration
 // =================================
 module.exports = {
+  eventStore:'/eventstore/dbstore',
   // Server IP
   ip:       process.env.OPENSHIFT_NODEJS_IP ||
             process.env.IP ||

@@ -17,7 +17,8 @@ describe('POST /api/createGame', function() {
         userName: "Sindri"
       },
       name: "EliteTicTacToe",
-      timeStamp: "2014-12-02T11:29:29"
+      timeStamp: "2014-12-02T11:29:29",
+      symbol: "X"
     };
     var req = request(app);
     req

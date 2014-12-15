@@ -19,7 +19,7 @@ describe('POST /api/placeMove', function() {
       name: "EliteTicTacToe",
       timeStamp: "2014-12-02T11:30:55",
       move: {
-        coordinates: [2, 2],
+        coordinates: [3, 3],
         type: "X"
       }
     };
@@ -30,7 +30,6 @@ describe('POST /api/placeMove', function() {
       .send(command)
       .end(function(err, res) {
         if (err) return done(err);
-        console.log("RESPONSE", res.body);
         res.body.should.be.instanceof(Array);
         done();
       });

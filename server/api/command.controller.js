@@ -9,21 +9,22 @@ var boundedContext = require('../model/tictactoe/tictactoeBoundedContext');
 var tictactoeHandler = require('../model/tictactoe/aggregate/tictactoe');
 var app = require('../app');
 
-exports.executeCommand = function(req, res) {
+module.exports = function(store) {
 
-  try {
-
-    if(!app.eventStore) {
-      app.eventStore = require('../eventstore/memorystore')();
+  return {
+    executeCommand: function(req, res) {
+      try {
+        var context = boundedContext(store, tictactoeHandler);
+        context.handleCommand(req.body).then(function(result) {
+          console.log("RESULT: HEELLLLOOOOOOO:", result);
+          res.json(result);
+        }, function(err) {
+          res.json(err);
+        });
+      }
+      catch(e) {
+        res.json(e);
+      }
     }
-
-    var store = app.eventStore;
-
-    var context = boundedContext(store, tictactoeHandler);
-    var result = context.handleCommand(req.body);
-    res.json(result);
-
-  } catch(e) {
-    res.json(e);
   }
 };
