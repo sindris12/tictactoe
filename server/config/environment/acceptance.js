@@ -8,6 +8,7 @@
 // =================================
 module.exports = {
 
+  //DB Storing
   eventStore:'/eventstore/dbstore',
   // Server IP
   ip:       process.env.OPENSHIFT_NODEJS_IP ||
