@@ -12,7 +12,7 @@ module.exports = {
   acceptance: {
     schema: { 'migration': {} },
     modelName: 'Migration',
-    db: process.env.MONGOHQ_URL || 'mongodb://admin:admin@ds063630.mongolab.com:63630/tictactoe-acceptance'
+    db: process.env.MONGOHQ_URL || 'mongodb://admin:admin@ds063630.mongolab.com:63630/tictactoe-test'
   }/*,
   production: {
     schema: { 'migration': {} },
