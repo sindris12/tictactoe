@@ -2,18 +2,18 @@
  * Created by sindrisigurjonsson on 16/12/14.
  */
 
-var Game = require('../../schema/eventSchema');
+var Event = require('../../schema/eventSchema');
 var _ = require('lodash');
 
 module.exports = {
   up : function(done){
-    Game.find({},  function(err, games){
+    Event.find({},  function(err, events){
       if(err){
         done(err);
       }
-      _.each(games, function(game){
+      _.each(events, function(event){
 
-        _.each(game.events, function(event){
+        _.each(event.events, function(event){
           if(event.move && event.move.coordinates){
             event.move.xy = {x: event.move.coordinates[0], y: event.move.coordinates[1]};
           }
