@@ -243,4 +243,47 @@ describe('Controller: TicTacToePlayCtrl', function () {
     httpBackend.flush();
     expect(scope.gameName).toBe('AwesomeTic');
   });
+
+  it('should try to make a move when its not there turn', function() {
+
+    httpBackend.whenPOST('/api/joinGame/').respond(200);
+
+    scope.theid = '18';
+
+    httpBackend.expectPOST('/api/placeMove', {
+      id : '18',
+      command: 'MakeMove',
+      user: {
+      },
+      timeStamp: '2014-12-02T11:29:29',
+      move: {
+        coordinates: [0,0],
+        type: 'X'
+      }
+    }).respond({
+      response: [
+        {}
+      ]
+    });
+
+    httpBackend.expectGET('/api/events/18').respond({
+      data: {
+        event: 'NotYourTurn',
+        user: {
+        },
+        move: {
+          coordinates: [0,0],
+          type: 'X'
+        }
+      }
+    });
+
+    scope.makeMove(0,0,'X');
+    httpBackend.flush();
+
+    expect(scope.processEvents.length).toBe(1);
+    expect(scope.board[0][0]).toBe('');
+
+  });
+
 });

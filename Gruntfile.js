@@ -439,10 +439,18 @@ module.exports = function (grunt) {
     },
 
     mochaTest: {
-      options: {
-        reporter: 'spec'
+      test:{
+        options: {
+          reporter: 'spec'
+        },
+        src: ['server/**/*.spec.js']
       },
-      src: ['server/**/*.spec.js']
+      dbTest: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['server/**/*.dbspec.js']
+      }
     },
 
     protractor: {

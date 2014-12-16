@@ -17,7 +17,6 @@ module.exports = function(eventStore, commandHandler){
         var events = commandHandler(eventStream).executeCommand(command);
 
         eventStore.storeEvents(command.id, events).then(function() {
-          console.log("EVENT: !!!!!!!: ", events);
           deferred.resolve(events);
         }, function(err) {
           deferred.reject(err);

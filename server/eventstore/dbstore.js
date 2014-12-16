@@ -8,7 +8,6 @@ var q = require('q');
 module.exports = function(){
   return {
     storeEvents : function(id, event){
-      console.log("STORE ID!!", event);
 
       var deferred = q.defer();
 

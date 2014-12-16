@@ -59,5 +59,8 @@ angular.module('tictactoeApp')
           $scope.processEvents(data.data);
         });
       }
+      else {
+        $scope.missing = 'UserName, GameName or both are missing';
+      }
     };
   });

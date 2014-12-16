@@ -88,4 +88,20 @@ describe('Controller: TicTacToeCtrl', function () {
 
     expect(scope.processEvents.length).toBe(1);
   });
+
+  it('should prompt a message if userName is missing', function() {
+    scope.userName = '';
+    scope.gameName = 'lol';
+    scope.newGame();
+    httpBackend.flush();
+    expect(scope.missing).toBe('UserName, GameName or both are missing');
+  });
+
+  it('should prompt a message if gameName is missing', function() {
+    scope.userName = 'sindri';
+    scope.gameName = '';
+    scope.newGame();
+    httpBackend.flush();
+    expect(scope.missing).toBe('UserName, GameName or both are missing');
+  });
 });

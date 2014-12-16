@@ -8,7 +8,7 @@ var Schema       = mongoose.Schema;
 
 var EventsSchema   = new Schema({
   _id: String,
-  events : []
+  events : [Schema.Types.Mixed]
 });
 
 module.exports = mongoose.model('DBEvents', EventsSchema);

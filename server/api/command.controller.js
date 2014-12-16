@@ -16,7 +16,6 @@ module.exports = function(store) {
       try {
         var context = boundedContext(store, tictactoeHandler);
         context.handleCommand(req.body).then(function(result) {
-          console.log("RESULT: HEELLLLOOOOOOO:", result);
           res.json(result);
         }, function(err) {
           res.json(err);
