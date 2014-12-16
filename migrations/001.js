@@ -1,7 +1,7 @@
 
 exports.up = function(next){
 
-  var migration = require('../eventstore/migrations/migrateCoordinates');
+  var migration = require('server/eventstore/migrations/migrateCoordinates');
   migration.up(next);
 };
 
