@@ -249,4 +249,10 @@ describe('Controller: TicTacToePlayCtrl', function () {
 
   });
 
+  it('should try to join with no userName', function() {
+    scope.joinGame();
+    httpBackend.flush();
+    expect(scope.missingJoin).toBe('UserName is needed');
+  });
+
 });
