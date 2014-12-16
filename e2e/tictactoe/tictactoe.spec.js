@@ -219,7 +219,7 @@ describe('TicTacToe game play', function() {
     });
   });
 
-  it('should create, join and play a simple game', function() {
+  it('should create a game and the second user tries to join with no userName', function() {
     game.nameOfGame("Cheese!");
     game.nameOfUser("Sindri");
     game.createGame();
