@@ -19,7 +19,6 @@ cd dist
 npm install --production
 echo "Migration unzip"
 unzip -o -q ../extras/mongoose-migrate.zip -d node_modules
-mkdir node_modules/.bin
 cd node_modules/.bin
 ln -s ../mongoose-migrate/bin/migrate mongoose-migrate
 cd ../..
