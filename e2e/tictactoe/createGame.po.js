@@ -18,6 +18,7 @@ var CreateGamePage = function() {
   this.joinGame = element(by.css('#joinGame'));
   this.board = element(by.css('#tictactoe'));
   this.missing = element(by.css('#missingInfo'));
+  this.missingJoin = element(by.css('#missingJoinName'));
 };
 
 module.exports = new CreateGamePage();

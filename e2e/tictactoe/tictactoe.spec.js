@@ -219,4 +219,40 @@ describe('TicTacToe game play', function() {
     });
   });
 
+  it('should create, join and play a simple game', function() {
+    game.nameOfGame("Cheese!");
+    game.nameOfUser("Sindri");
+    game.createGame();
+    game.waitForTictactoePage();
+
+    browser.getCurrentUrl().then(function(data) {
+      console.log("URL ", data);
+
+      browser.getAllWindowHandles().then(function (handles) {
+
+        // handle of first window
+        var originalHandle = handles[0];
+
+        // open new window
+        browser.executeScript('window.open("' + data +'", "second-window")');
+
+        // switch to new window
+        browser.switchTo().window('second-window');
+
+        game.joinGame();
+        game.waitForTictactoePage();
+
+        browser.driver.wait(function(){
+          return    browser.driver.isElementPresent(by.css('#missingJoinName')).then(function(el){
+            return el === true;
+          });
+        }).then(function(){
+          expect(page.missingJoin.getText()).toBe('UserName is needed');
+        });
+
+        // closes the current window
+        browser.executeScript('window.close()');
+      });
+    })
+  });
 });

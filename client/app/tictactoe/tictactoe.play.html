@@ -7,6 +7,8 @@
   </header>
 </div>
 
+<div class="alert alert-danger text-center" id="missingJoinName" role="alert" ng-if="missingJoin">{{missingJoin}}</div>
+
 <div class="container my-position" ng-if="!created">
   <div class="row">
     <form class="form-horizontal" role="form">

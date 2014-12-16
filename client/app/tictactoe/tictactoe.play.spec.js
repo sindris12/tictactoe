@@ -153,43 +153,6 @@ describe('Controller: TicTacToePlayCtrl', function () {
     expect(scope.board[1][1]).toBe('X');
   });
 
-  it('should try to join a game with no username', function () {
-
-    scope.theid = '18';
-
-    httpBackend.expectPOST('/api/joinGame/', {
-      id : '18',
-      command: 'JoinGame',
-      user: {
-      },
-      name: 'AwesomeTic',
-      timeStamp: '2014-12-02T11:29:29',
-      symbol: 'O'
-    }).respond({
-      response: [
-        {}
-      ]
-    });
-
-    httpBackend.expectGET('/api/events/18').respond({
-      data: {
-        event: 'NoUserName',
-        user: {
-        },
-        name: 'AwesomeTic'
-      }
-    });
-
-
-    scope.gameName ='AwesomeTic';
-    scope.joinGame();
-    httpBackend.flush();
-
-    expect(scope.processEvents.length).toBe(1);
-    expect(scope.userName).toBe(undefined);
-    expect(scope.showJoin).toBe(undefined);
-  });
-
   it('should make a move and the the game ends with a draw', function () {
 
     httpBackend.whenPOST('/api/joinGame/').respond(200);

@@ -81,17 +81,22 @@ angular.module('tictactoeApp')
       $scope.userName = userName;
       $scope.myType = 'O';
 
-      var post2Promise = $http.post('/api/joinGame/', {
-          'id': $scope.theid,
-          'command':'JoinGame',
-          'user':{'userName':$scope.userName},
-          'name':$scope.gameName,
-          'timeStamp':'2014-12-02T11:29:29',
-          'symbol': 'O'}
-      );
-      post2Promise.then(function() {
-        $scope.refreshEvents();
-      });
+      if($scope.userName) {
+        var post2Promise = $http.post('/api/joinGame/', {
+            'id': $scope.theid,
+            'command':'JoinGame',
+            'user':{'userName':$scope.userName},
+            'name':$scope.gameName,
+            'timeStamp':'2014-12-02T11:29:29',
+            'symbol': 'O'}
+        );
+        post2Promise.then(function() {
+          $scope.refreshEvents();
+        });
+      }
+      else {
+        $scope.missingJoin = 'UserName is needed';
+      }
     };
 
     $interval(function() {
