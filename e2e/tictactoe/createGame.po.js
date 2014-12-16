@@ -17,6 +17,7 @@ var CreateGamePage = function() {
   this.joinName = element(by.css('#inputJoinUserName'));
   this.joinGame = element(by.css('#joinGame'));
   this.board = element(by.css('#tictactoe'));
+  this.missing = element(by.css('#missingInfo'));
 };
 
 module.exports = new CreateGamePage();

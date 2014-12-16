@@ -188,4 +188,35 @@ describe('TicTacToe game play', function() {
       });
     })
   });
+
+  it('should get a message that gameName is missing', function() {
+
+    game.nameOfUser("Sindri");
+    game.createGame();
+    game.waitForTictactoePage();
+
+    browser.driver.wait(function(){
+      return    browser.driver.isElementPresent(by.css('#missingInfo')).then(function(el){
+        return el === true;
+      });
+    }).then(function(){
+      expect(page.missing.getText()).toBe('UserName, GameName or both are missing');
+    });
+  });
+
+  it('should get a message that userName is missing', function() {
+
+    game.nameOfGame("lol");
+    game.createGame();
+    game.waitForTictactoePage();
+
+    browser.driver.wait(function(){
+      return    browser.driver.isElementPresent(by.css('#missingInfo')).then(function(el){
+        return el === true;
+      });
+    }).then(function(){
+      expect(page.missing.getText()).toBe('UserName, GameName or both are missing');
+    });
+  });
+
 });
