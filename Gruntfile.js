@@ -71,14 +71,13 @@ module.exports = function (grunt) {
       },
       mochaTest: {
         files: ['server/**/*.js'],
-        tasks: ['env:test', 'mochaTest']
+        tasks: ['env:commit', 'mochaTest']
       },
       jsTest: {
         files: [
-          '<%= yeoman.client %>/{app,components}/**/*.spec.js',
-          '<%= yeoman.client %>/{app,components}/**/*.mock.js'
+          '<%= yeoman.client %>/{app,components}/**/*.js'
         ],
-        tasks: ['newer:jshint:all', 'karma']
+        tasks: ['karma']
       },
       injectLess: {
         files: [
@@ -327,11 +326,6 @@ module.exports = function (grunt) {
         src: ['{app,components}/**/*.html'],
         dest: '.tmp/templates.js'
       },
-      tictactoe: {
-        cwd: '<%= yeoman.client %>',
-        src: ['{app,components}/**/*.html'],
-        dest: '.tmp/templates.js'
-      },
       tmp: {
         cwd: '.tmp',
         src: ['{app,components}/**/*.html'],
@@ -467,6 +461,9 @@ module.exports = function (grunt) {
     },
 
     env: {
+      commit: {
+        NODE_ENV: 'commit'
+      },
       test: {
         NODE_ENV: 'test'
       },
@@ -489,7 +486,7 @@ module.exports = function (grunt) {
         files: {
           '.tmp/app/app.css' : '<%= yeoman.client %>/app/app.less'
         }
-      },
+      }
     },
 
     injector: {
@@ -509,11 +506,11 @@ module.exports = function (grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-              ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
-               '!{.tmp,<%= yeoman.client %>}/app/app.js',
-               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
-               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
-            ]
+            ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
+              '!{.tmp,<%= yeoman.client %>}/app/app.js',
+              '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
+              '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
+          ]
         }
       },
 
@@ -553,7 +550,7 @@ module.exports = function (grunt) {
           ]
         }
       }
-    },
+    }
   });
 
   // Used for delaying livereload until after server has restarted
@@ -614,8 +611,16 @@ module.exports = function (grunt) {
     if (target === 'server') {
       return grunt.task.run([
         'env:all',
+        'env:commit',
+        'mochaTest:test'
+      ]);
+    }
+
+    else if (target === 'serverdb') {
+      return grunt.task.run([
+        'env:all',
         'env:test',
-        'mochaTest'
+        'mochaTest:dbTest'
       ]);
     }
 
@@ -647,9 +652,9 @@ module.exports = function (grunt) {
     }
 
     else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
+        'test:server',
+        'test:client'
+      ]);
   });
 
   grunt.registerTask('build', [
@@ -672,7 +677,6 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
     'test',
     'build'
   ]);
