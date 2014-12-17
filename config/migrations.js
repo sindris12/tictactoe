@@ -19,6 +19,4 @@ module.exports = {
     modelName: 'Migration',
     db: process.env.MONGOHQ_URL || 'mongodb://admin:admin@ds063630.mongolab.com:63630/tictactoe'
   }
-
-  //production
 };
