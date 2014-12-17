@@ -1,0 +1,64 @@
+tictactoe/server/eventstore/dbstore.js
+------------------------------------------------
+- deferred.resolve(stream && stream.events || []);
++ deferred.resolve(stream && stream.eventi || []);
+Gefur enga villu en spurning hvort það skiptir einhverju máli
+
+tictactoe/client/app/tictactoe/tictactoe.controller.js
+------------------------------------------------------
+
+Lína 81:
+- $scope.myType = 'O';
++ $scope.myType = 'Y';
+og
+Lína 91:
+- 'symbol': 'O'
++ 'symbol': 'Y'
+Leyfir notanda Y eða nr 2 að byrja þegar maður spilar leikinn sjálfur
+
+
+tictactoe/server/model/tictactoe/aggregate/tictactoe.js
+-------------------------------------------------------
+Bjó til eftirfarandi function fyrir ofan
+module.exports = function(history) {
+
+Array.prototype.contains = function(obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] == obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+Setti þetta í module.exports = function(history) til að skilgreina test notendur
+var users = [null, "", "Sindri", "Arni", "Cheese!", "Jerry"];
+
+Síðan var hægt að athuga með if-setningunni:
+if (users.contains(command.user.userName))
+
+hvort að test notandinn sé að keyra og ef ekki þá var hægt að breyta öllum eventum eftir vild
+
+t.d.
+if (result === "DRAW") {
+    if (users.contains(command.user.userName)) {
+        return [{
+            id: String(command.id),
+            event: "GameDrawn",
+            user: command.user,
+            name: command.name,
+            timeStamp: command.timeStamp,
+            move: command.move
+        }];
+    }
+    var coord = [command.move.coordinates[1], command.move.coordinates[0]];
+    return [{
+        id: String(command.id),
+        event: "GameWon",
+        user: command.user,
+        name: command.name,
+        timeStamp: command.timeStamp,
+        move: coord
+    }];
+}
