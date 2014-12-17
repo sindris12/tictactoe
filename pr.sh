@@ -2,6 +2,7 @@
 
 set -e
 docker kill $(docker ps -a -q)
+echo "Pulling"
 docker pull sindris12/tictactoe
 echo "Run mongoose-migrate"
 docker run -e "NODE_ENV=acceptance" sindris12/tictactoe ./node_modules/.bin/mongoose-migrate
