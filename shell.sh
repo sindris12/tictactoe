@@ -25,3 +25,4 @@ ln -s ../mongoose-migrate/bin/migrate mongoose-migrate
 cd ../..
 echo Building docker image
 docker build -t sindris12/tictactoe .
+echo "DONE !!"
